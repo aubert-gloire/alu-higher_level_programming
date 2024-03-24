@@ -1,29 +1,13 @@
 #!/usr/bin/python3
-""" A script that sends POST request
-"""
+# posts email
+import urllib.request
+import urllib.parse
+import sys
 
-
-if __name__ == '__main__':
-    from urllib.request import urlopen, Request
-    from urllib.parse import urlencode
-    import sys
-    data = urlencode({"email": sys.argv[2]
-                      }).encode("ascii")
-
-    request = Request(sys.argv[1], data)
-    with urlopen(request) as response:
-        print(response.read().decode('utf-8'))#!/usr/bin/python3
-""" A script that sends POST request
-"""
-
-
-if __name__ == '__main__':
-    from urllib.request import urlopen, Request
-    from urllib.parse import urlencode
-    import sys
-    data = urlencode({"email": sys.argv[2]
-                      }).encode("ascii")
-
-    request = Request(sys.argv[1], data)
-    with urlopen(request) as response:
-        print(response.read().decode('utf-8'))
+if __name__ == "__main__":
+    val = {'email': sys.argv[2]}
+    data = urllib.parse.urlencode(val).encode('ascii')
+    handler = urllib.request.Request(sys.argv[1], data)
+    with urllib.request.urlopen(handler) as response:
+        thisPage = response.read().decode('utf-8')
+        print(thisPage)
